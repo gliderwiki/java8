@@ -3,3 +3,5 @@
 .idea
 gradle
 java8.iml
+.idea/
+.gradle/
