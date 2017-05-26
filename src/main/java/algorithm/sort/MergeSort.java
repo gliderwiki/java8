@@ -1,6 +1,7 @@
 package algorithm.sort;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * @Author : yion
@@ -13,56 +14,69 @@ import java.util.Arrays;
  * 분할정복 방식의 알고리즘의 한 종류 (1/2 씩 분할)
  * 안정적인 정렬
  * Performance : O(n log n)
- * http://www.vogella.com/tutorials/JavaAlgorithmsMergesort/article.html
  */
 public class MergeSort {
-
     public static void main(String[] args) {
-        final Integer[] numbers = {6, 5, 3, 1, 8, 7, 2, 4};
-        mergeSort(numbers);
-        System.out.println("Result = " + Arrays.toString(numbers));
+        Integer[] a = {2, 6, 3, 5, 1};
+
+        mergeSort(a);
+
+        System.out.println(Arrays.toString(a));
+
     }
 
-    private static void mergeSort(Integer[] numbers) {
-        Integer[] temp = new Integer[numbers.length];
-        mergeOperator(numbers, temp, 0, numbers.length - 1);
-    }
-
-    private static void mergeOperator(Integer[] numbers, Integer[] temp, int left, int right) {
-        if (left < right) {
-            int middle = (left + right) / 2;        // 가운데 분할
-            mergeOperator(numbers, temp, left, middle);         // 첫번째 부터 중간 요소까지
-            mergeOperator(numbers, temp, middle + 1, right);    // 중간 요소 다음부터 끝 요소 까지
-            merge(numbers, temp, left, middle + 1, right);      // 병합
+    private static Comparable[] mergeSort(Comparable[] list) {
+        // 리스트가 1 이하이면 연산할 필요 없음
+        if (list.length <= 1) {
+            return list;
         }
+
+        // 리스트를 반으로 나누어 두 부분으로 분리
+        Comparable[] first = new Comparable[list.length / 2];  // 5 일 경우 2.5 (2)
+        Comparable[] second = new Comparable[list.length - first.length];  // 5 - 2 : 3개의 배열 요소를 처리
+
+        // 배열에서 원하는 요소를 부분을 복사한다.
+        // 원본, 원본 시작점, 복사본, 복사본 시작점, 길이
+        System.arraycopy(list, 0, first, 0, first.length);  // 첫 파트 배열 카피   list, 0, first, 0, 2
+        System.arraycopy(list, first.length, second, 0, second.length); // 두번째 파트 배열 카피  list, 2, second, 0, 3
+
+        // 재귀 호출로 각 요소를 분리한다.(첫 번째 배열 분해 후 두번째 배열 분해)
+        mergeSort(first);
+        mergeSort(second);
+
+        // 각 배열을 병합하여 원래 배열을 덮어쓴다.
+        merged(first, second, list);
+
+        return list;
     }
 
-    private static void merge(Integer[] numbers, Integer[] temp, int left, int right, int rightEnd) {
-        int leftEnd = right - 1;
-        int k = left;
-        int num = rightEnd - left + 1;
+    private static void merged(Comparable[] first, Comparable[] second, Comparable[] result) {
+        // 첫번째 배열의 인덱스 위치 - 첫 요소 부터 시작
+        int firstIndex = 0;
 
-        while (left <= leftEnd && right <= rightEnd) {
-            if (numbers[left].compareTo(numbers[right]) <= 0) {
-                temp[k++] = numbers[left++];
+        // 두번째 배열의 인덱스 위치 - 첫 요소 부터 시작
+        int secondIndex = 0;
+
+        // 병합된 배의 인덱스 위치 - 첫번째 위치부터 시작
+        int merged = 0;
+
+        // 첫 배열의 요소와 두번째 배열의 요소를 비교함
+        // 그 중 작은 요소를 배열병합에 저장
+        while (firstIndex < first.length && secondIndex < second.length) {
+            System.out.println("first[firstIndex] : " + first[firstIndex] + " second[secondIndex] : " + second[secondIndex] + " result = " +
+                    first[firstIndex].compareTo(second[secondIndex]));
+            if (first[firstIndex].compareTo(second[secondIndex]) < 0) {
+                result[merged] = first[firstIndex];
+                firstIndex++;
             } else {
-                temp[k++] = numbers[right++];
+                result[merged] = second[secondIndex];
+                secondIndex++;
             }
+            merged++;
         }
 
-        while (left <= leftEnd) { // copy rest of first half
-            temp[k++] = numbers[left++];
-        }
+        System.arraycopy(first, firstIndex, result, merged, first.length - firstIndex);
+        System.arraycopy(second, secondIndex, result, merged, second.length - secondIndex);
 
-        while (right <= rightEnd) { // copy rest of right half
-            temp[k++] = numbers[right++];
-        }
-
-        // copy temp back
-        for (int i = 0; i < num; i++, rightEnd--) {
-            numbers[rightEnd] = temp[rightEnd];
-        }
     }
-
-
 }
