@@ -1,5 +1,7 @@
 package quiz;
 
+import java.util.Scanner;
+
 /**
  * @Author : yion
  * @Date : 2017. 3. 20.
