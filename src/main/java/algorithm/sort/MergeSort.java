@@ -6,13 +6,11 @@ import java.util.Comparator;
 /**
  * @Author : yion
  * @Date : 2017. 5. 23.
- * @Description : 병합정렬 (Divide & Conquer)
+ * @Description : 병합정렬 (Divide & Conquer) : 안정적인 정렬
  * 주워진 배열을 두 부분씩 나누워 정렬한 후 하나로 합치는 방식
- * 두 번의 재귀 호출과 한 번의 합병으로 구성되며 재귀 호출 시 배열 크기가 절반으로 줄어 들어
- * 깊이가  log n 으로 된다. 즉, 두 배열의 합은 두 배열의 크기의 합에 비례 함으로
- * 전체 수행 시간 복잡도는 최악, 최선, 평균 모두 O(n log n).
+ * 두 번의 재귀 호출과 한 번의 합병으로 구성되며 재귀 호출 시 배열 크기가 절반으로 줄어 들어 깊이가  log n 으로 된다.
+ * 즉, 두 배열의 합은 두 배열의 크기의 합에 비례 함으로 전체 수행 시간 복잡도는 최악, 최선, 평균 모두 O(n log n).
  * 분할정복 방식의 알고리즘의 한 종류 (1/2 씩 분할)
- * 안정적인 정렬
  * Performance : O(n log n)
  */
 public class MergeSort {

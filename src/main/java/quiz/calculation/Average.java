@@ -9,8 +9,9 @@ import java.util.Arrays;
  *
  */
 public class Average {
-
     public static void main(String[] args) {
+        // Scanner scan = new Scanner(System.in);
+
         int[] params = { 2, 3, 6, 8};
 
         Average average = new Average();

@@ -25,8 +25,6 @@ import java.util.NoSuchElementException;
 public class Queue {
     private List<Integer> queue = new ArrayList<>();
 
-    java.util.Queue myQueue = new LinkedList<>();
-
     public void enqueue(Integer data) {
         queue.add(data);
     }
