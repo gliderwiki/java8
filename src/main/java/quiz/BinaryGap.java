@@ -1,5 +1,7 @@
 package quiz;
 
+import java.io.UnsupportedEncodingException;
+
 /**
  * @Author : yion
  * @Date : 2017. 3. 23.
@@ -7,8 +9,8 @@ package quiz;
  */
 public class BinaryGap {
 
-    public static void main(String[] args) {
-        int x = 254;
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        int x = 2;
 
         // decimal to binary
         String binaryString = Integer.toBinaryString(x);
@@ -22,6 +24,15 @@ public class BinaryGap {
         System.out.println("binary : " + binaryString);
         System.out.println("hex : " + hexString);
         System.out.println("ASCII : " + charAscII);
+
+
+        String str = "1226#24#";
+
+        int val = str.charAt(0) - '0';
+        System.out.println(val);
+
+
+
 
     }
 }

@@ -1,4 +1,4 @@
-package quiz.practice.arrays;
+package quiz.arrays;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -6,7 +6,9 @@ import java.util.Scanner;
 /**
  * @Author : yion
  * @Date : 2017. 5. 29.
- * @Description :
+ * @Description : 좌측 쉬프트 값이 주어질 때 Array의 위치를 변경해준다.
+ * 예 [1,2,3,4,5] 를 2만큼 이동 시키면 [3,4,5,1,2] 가 되어야 한다.
+ *
  */
 public class LeftLotation {
 
@@ -36,7 +38,7 @@ public class LeftLotation {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();       // 5 (1,2,3,4,5)
-        int k = in.nextInt();       // 2
+        int k = in.nextInt();       // 4
         int a[] = new int[n];
         for(int a_i=0; a_i < n; a_i++){
             a[a_i] = in.nextInt();
