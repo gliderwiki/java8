@@ -5,10 +5,7 @@ package java8.interfaces.defaultmethod;
  * @Date : 2018. 5. 20.
  * @Description :
  */
-public class DisitSequence implements IntSequence {
-    public DisitSequence(int n) {
-    }
-
+public class IntSequenceImpl implements IntSequence {
     @Override
     public boolean hasNext() {
         return false;
@@ -19,5 +16,8 @@ public class DisitSequence implements IntSequence {
         return 0;
     }
 
+    public static void main(String[] args) {
+        IntSequence.changePrint();
+    }
 
 }
